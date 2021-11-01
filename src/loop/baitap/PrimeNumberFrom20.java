@@ -2,7 +2,7 @@ package loop.baitap;
 
 import java.util.Scanner;
 
-public class PrimeNumber {
+public class PrimeNumberFrom20 {
     public static void main(String[] args) {
         int n;
         boolean check = true;
