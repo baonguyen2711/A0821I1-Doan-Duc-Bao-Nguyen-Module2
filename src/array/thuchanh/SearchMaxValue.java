@@ -2,7 +2,7 @@ package array.thuchanh;
 
 import java.util.Scanner;
 
-public class SearchBigValue {
+public class SearchMaxValue {
     public static void main(String[] args) {
         int size;
         int[] array;
@@ -25,7 +25,7 @@ public class SearchBigValue {
             System.out.print(k + " ");
         }
         int max = array[0];
-        int index = 1;
+        int index = 0;
         for (int j = 0; j < array.length; j++) {
             if (array[j] > max) {
                 max = array[j];
