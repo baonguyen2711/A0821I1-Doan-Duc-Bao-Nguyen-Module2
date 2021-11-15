@@ -35,10 +35,12 @@ public class DelElement {
         }
         if (!check) {
             System.out.print("Not in array");
+        }else {
+            System.out.println("Array after delete " + '"' + x + '"' + " : ");
+            for (int i = 0;i<array.length-1;i++) {
+                System.out.print(array[i] + " ");
+            }
         }
-        System.out.println("Array after delete " + '"' + x + '"' + " : ");
-        for (int i = 0;i<array.length-1;i++) {
-            System.out.print(array[i] + " ");
-        }
+
     }
 }
