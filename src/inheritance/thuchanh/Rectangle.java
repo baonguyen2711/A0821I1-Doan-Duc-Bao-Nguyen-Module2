@@ -34,12 +34,14 @@ public class Rectangle extends TheShapes {
     public void setLength(double length) {
         this.length = length;
     }
-    public double getArea() {
-        return width * this.length;
+
+    public String getArea() {
+        return "Area rectangle = " + width * this.length;
     }
 
     public double getPerimeter() {
         return 2 * (width + this.length);
+
     }
 
     @Override
@@ -48,10 +50,18 @@ public class Rectangle extends TheShapes {
                 + getWidth()
                 + " and length="
                 + getLength()
+                + ",area= " + getArea()
                 + ", which is a subclass of "
                 + super.toString();
     }
+
+    @Override
+    public void resize(double percent) {
+        length = length * (1 + percent/100);
+        width = width * (1 + percent/100);
+    }
 }
+
 class RectangleTest {
     public static void main(String[] args) {
         Rectangle rectangle = new Rectangle();

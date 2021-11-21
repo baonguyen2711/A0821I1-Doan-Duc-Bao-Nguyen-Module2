@@ -1,6 +1,8 @@
 package inheritance.thuchanh;
+import abstractclassandinterface.thuchanh.Colorable;
+import abstractclassandinterface.thuchanh.Resizeable;
 
-public class TheShapes {
+public  class TheShapes implements Resizeable {
     private String color = "green";
     private boolean filled = true;
 
@@ -21,6 +23,10 @@ public class TheShapes {
         this.color = color;
     }
 
+    public String getArea() {
+        return null;
+    }
+
     public boolean isFilled() {
         return filled;
     }
@@ -32,6 +38,16 @@ public class TheShapes {
     @Override
     public String toString() {
         return "A Shape with color of " + getColor() + " and" + (isFilled() ? " filled" : " not filled");
+    }
+
+    public static void printTheShape(TheShapes[] shape) {
+        for (TheShapes x : shape) {
+            System.out.println(x.getArea());
+        }
+    }
+
+    @Override
+    public void resize(double percent) {
 
     }
 }
