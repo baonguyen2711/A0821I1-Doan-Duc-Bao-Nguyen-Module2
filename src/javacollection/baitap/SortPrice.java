@@ -1,0 +1,13 @@
+package javacollection.baitap;
+
+import java.util.Comparator;
+
+public class SortPrice implements Comparator<ArrayListProduct> {
+    @Override
+    public int compare(ArrayListProduct o1, ArrayListProduct o2) {
+        if(o1.getPrice() > o2.getPrice()){
+            return 1;
+        }
+        return 0;
+    }
+}

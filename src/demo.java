@@ -1,36 +1,27 @@
-import java.util.Scanner;
+import java.util.Locale;
+import java.util.Map;
+import java.util.TreeMap;
 
-public class demo {
+class CountString {
     public static void main(String[] args) {
-        int size;
-        // Nhập phần tử của mảng
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter size of array: ");
-        size = scanner.nextInt();
-        int [] arr = new int[size+1];
+        String string = new String("Hello World").toLowerCase();
+        String[] array = string.split("");
+        int count = 0;
+        Map<String, Integer> stringTreeMap = new TreeMap();
+//        for (int i = 0; i < array.length; i++) {
+//            stringTreeMap.put(array[i], 0);
+//        }
 
-        // Khởi tạo giá trị của mảng
-        for(int i=0;i<size;i++){
-            System.out.print("Enter element " + i + ": ");
-            arr[i] = scanner.nextInt();
-        }
-
-        // Nhập vị trí và phần tử cần thêm
-        int index, value;
-        System.out.print("Enter the position of the element to be added: ");
-        index = scanner.nextInt();
-        System.out.print("Enter the value of the element to be added: ");
-        value = scanner.nextInt();
-
-        if(index<0 || index>size) System.out.println("Index is invalid");
-        else{
-            for(int i = size; i>index;i--){
-                arr[i] = arr[i-1];
+        for (int i = 0; i < array.length; i++) {
+            boolean flag = stringTreeMap.containsKey(array[i]);
+            if (flag) {
+                count = stringTreeMap.get(array[i]);
+                count++;
+                stringTreeMap.put(array[i], count);
+            } else {
+                stringTreeMap.put(array[i], 1);
             }
-            arr[index] = value;
         }
-        for(int i=0;i<=size;i++){
-            System.out.print(arr[i] + "\t");
-        }
+        System.out.println(stringTreeMap);
     }
 }
