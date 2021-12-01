@@ -10,6 +10,7 @@ public class ArrayListProduct {
     }
 
     public ArrayListProduct(String name, int price) {
+        super();
         this.name = name;
         this.id = ++idTemp;
         this.price = price;

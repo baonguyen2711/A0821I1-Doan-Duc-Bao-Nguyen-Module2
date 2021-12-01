@@ -1,6 +1,7 @@
 package javacollection.baitap;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -38,7 +39,6 @@ public class ProductManager {
     public void delete(int id) {
         System.out.println("\nDanh sách sản phẩm sau khi xoá là: ");
         ArrayListProduct product = new ArrayListProduct();
-//        int size = listProducts.size();
         for (ArrayListProduct listProduct : listProducts) {
             if (listProduct.getId() == id) {
                 product = listProduct;
@@ -50,11 +50,15 @@ public class ProductManager {
 
     public void display() {
         System.out.println("------------------------------------------------------------");
+        sortPrice();
         for (ArrayListProduct productManager : listProducts) {
+
             System.out.println("Tên sản phẩm: " + productManager.getName() + " ---"
                     + " Mã sản phẩm(ID): " + productManager.getId() + " ---"
                     + " Giá sản phẩm: " + productManager.getPrice());
+
         }
+
     }
 
     public void sortPrice() {
@@ -77,6 +81,5 @@ public class ProductManager {
         if (!check) {
             System.out.println("\nKhông tìm thấy tên sản phẩm !!!");
         }
-
     }
 }

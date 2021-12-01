@@ -12,6 +12,7 @@ public class MainTest {
         productManager.sortPrice();
         productManager.display();
         productManager.delete(1);
+        productManager.sortPrice();
         productManager.display();
         productManager.edit(2);
         productManager.display();
