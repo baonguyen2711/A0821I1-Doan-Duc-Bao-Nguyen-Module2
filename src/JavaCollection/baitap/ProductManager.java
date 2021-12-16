@@ -1,15 +1,18 @@
 package JavaCollection.baitap;
 
-import java.util.ArrayList;
 
+import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class ProductManager {
+    //ReadAndWrite readAndWrite =new ReadAndWrite();
     Scanner scanner = new Scanner(System.in);
     List<ArrayListProduct> listProducts = new ArrayList<>();
 
     public ProductManager() {
+        //readAndWrite.readFile();
     }
 
     public void add() {
@@ -20,7 +23,9 @@ public class ProductManager {
         scanner.nextLine();
         ArrayListProduct product = new ArrayListProduct(name, price);
         listProducts.add(product);
+        //readAndWrite.writeFile(listProducts);
         display();
+        writeFile();
     }
 
     public void edit() {
@@ -33,9 +38,13 @@ public class ProductManager {
                 listProduct.setName(scanner.nextLine());
                 System.out.print("Đổi giá sản phẩm tại ID số " + id + ": ");
                 listProduct.setPrice(Integer.parseInt(scanner.nextLine()));
+                //readAndWrite.writeFile(listProducts);
+                writeFile();
             }
+
         }
         System.out.println("\nDanh sách sản phẩm sau khi đổi thông tin: ");
+        display();
     }
 
     public void delete() {
@@ -51,6 +60,8 @@ public class ProductManager {
             }
         }
         listProducts.remove(product);
+        //readAndWrite.writeFile(listProducts);
+        writeFile();
         display();
     }
 
@@ -58,7 +69,6 @@ public class ProductManager {
         System.out.println("------------------------------------------------------------");
         sortPrice();
         for (ArrayListProduct productManager : listProducts) {
-
             System.out.println("Tên sản phẩm: " + productManager.getName() + " ---"
                     + " Mã sản phẩm(ID): " + productManager.getId() + " ---"
                     + " Giá sản phẩm: " + productManager.getPrice());
@@ -69,6 +79,8 @@ public class ProductManager {
 
     public void sortPrice() {
         listProducts.sort(new SortPrice());
+        //readAndWrite.writeFile(listProducts);
+        writeFile();
     }
 
     public void searchName() {
@@ -88,6 +100,40 @@ public class ProductManager {
         }
         if (!check) {
             System.out.println("\nKhông tìm thấy tên sản phẩm !!!");
+        }
+    }
+
+    private static final String PRODUCT_FILE = "src/JavaCollection/baitap/product";
+    private static final List<String> products = new ArrayList<String>();
+
+    public void readFile() {
+        try {
+            File file = new File(PRODUCT_FILE);
+            String line = "";
+            if (!file.exists()) {
+                throw new FileNotFoundException();
+            }
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+            while ((line = bufferedReader.readLine()) != null) {
+                products.add(line);
+            }
+            bufferedReader.close();
+        } catch (Exception e) {
+            System.err.println("File không tồn tại or nội dung có lỗi");
+        }
+    }
+
+    public void writeFile() {
+        try {
+            FileWriter writer = new FileWriter(PRODUCT_FILE);
+            BufferedWriter bufferedWriter = new BufferedWriter(writer);
+            for (ArrayListProduct product : listProducts) {
+                bufferedWriter.write(product.toString());
+                bufferedWriter.write("\n");
+            }
+            bufferedWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

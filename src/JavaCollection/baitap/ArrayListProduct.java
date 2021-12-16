@@ -42,10 +42,8 @@ public class ArrayListProduct {
 
     @Override
     public String toString() {
-        return "ArrayListProduct{" +
-                "name='" + name + '\'' +
-                ", id=" + id +
-                ", price=" + price +
-                '}';
+        return "Tên sản phẩm: " + name + " ---"
+                + " Mã sản phẩm(ID): " + id + " ---"
+                + " Giá sản phẩm: " + price;
     }
 }
