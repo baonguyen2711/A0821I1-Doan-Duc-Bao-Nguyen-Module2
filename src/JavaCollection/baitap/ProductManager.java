@@ -24,6 +24,7 @@ public class ProductManager {
         ArrayListProduct product = new ArrayListProduct(name, price);
         listProducts.add(product);
         //readAndWrite.writeFile(listProducts);
+        System.out.println("Thêm mới thành công");
         display();
         writeFile();
     }
@@ -41,7 +42,6 @@ public class ProductManager {
                 //readAndWrite.writeFile(listProducts);
                 writeFile();
             }
-
         }
         System.out.println("\nDanh sách sản phẩm sau khi đổi thông tin: ");
         display();
@@ -106,7 +106,7 @@ public class ProductManager {
     private static final String PRODUCT_FILE = "src/JavaCollection/baitap/product";
     private static final List<String> products = new ArrayList<String>();
 
-    public void readFile() {
+    public  void readFile() {
         try {
             File file = new File(PRODUCT_FILE);
             String line = "";
