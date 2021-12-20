@@ -17,11 +17,11 @@ public class ManagerProduct {
     public void add() {
         String choice;
         do {
-            System.out.print("Add Handle product or Genuine product (H/G):");
+            System.out.print("Add Handle product or Authentic product (H/A):");
             choice = scanner.nextLine();
             choice = choice.toUpperCase();
-            if (!choice.equals("H") && !choice.equals("G")) System.out.println("Input invalid. Re-enter your input.");
-        } while (!choice.equals("H") && !choice.equals("G"));
+            if (!choice.equals("H") && !choice.equals("A")) System.out.println("Input invalid. Re-enter your input.");
+        } while (!choice.equals("H") && !choice.equals("A"));
 
         demoProduct demoProduct;
         System.out.print("Input name product: ");
@@ -47,17 +47,17 @@ public class ManagerProduct {
     }
 
     public void edit() {
-        System.out.println("Nhập ID cần sửa: ");
+        System.out.println("Input ID to edit: ");
         int id = scanner.nextInt();
         scanner.nextLine();
         boolean isHanded = false;
-
-
+        boolean checkID = false;
         for (demoProduct demoProduct : listProducts) {
             if ((demoProduct instanceof HandedProduct)) {
                 isHanded = true;
             }
             if (demoProduct.getId() == id) {
+                checkID = true;
                 System.out.print("Input name product: ");
                 demoProduct.setName(scanner.nextLine());
                 System.out.print("Input manufacturer: ");
@@ -68,54 +68,71 @@ public class ManagerProduct {
                 if (isHanded) {
                     System.out.print("Input warranty period: ");
                     demoProduct.setWarranty_period(scanner.nextLine());
-                } else {
+
+                }
+                if (!isHanded) {
                     System.out.print("Input nation: ");
                     demoProduct.setNation(scanner.nextLine());
                     System.out.print("Input status: ");
                     demoProduct.setStatus(scanner.nextLine());
                 }
                 writeFile();
-
                 //readAndWrite.writeFile(listProducts);
             }
+
         }
-        if (!isHanded) {
-            System.out.println("Không tim thấy ID");
+        if (!checkID) {
+            System.out.println("Not found ID");
         }
-        System.out.println("\nDanh sách sản phẩm sau khi đổi thông tin: ");
+        System.out.println("\nList of products after changing information: ");
+        display();
+    }
+
+
+    public void delete() {
+        System.out.println("Input ID to delete: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+        System.out.print("Are you sure to delete (Y/N): ");
+        String answer = scanner.nextLine();
+        boolean checkID = false;
+        System.out.println("\nThe list of products after deletion is: ");
+        for (demoProduct product : listProducts) {
+            if (answer.equalsIgnoreCase("Y")) {
+                if (product.getId() == id) {
+
+                    listProducts.remove(product);
+                    checkID = true;
+                }
+                if (!checkID) {
+                    System.out.println("Not found ID");
+                }
+            }
+        }
+        //readAndWrite.writeFile(listProducts);
+        writeFile();
         display();
     }
 
     //
-//    public void delete() {
-//        System.out.println("Nhập ID cần xoá: ");
-//        int id = scanner.nextInt();
-//        scanner.nextLine();
-//        System.out.println("\nDanh sách sản phẩm sau khi xoá là: ");
-//        ArrayListProduct product = new ArrayListProduct();
-//        for (ArrayListProduct listProduct : listProducts) {
-//            if (listProduct.getId() == id) {
-//                product = listProduct;
-//                break;
-//            }
-//        }
-//        listProducts.remove(product);
-//        //readAndWrite.writeFile(listProducts);
-//        writeFile();
-//        display();
-//    }
-//
     public void display() {
         System.out.println("------------------------------------------------------------");
         sortPrice();
-        for (demoProduct productManager : listProducts) {
-            System.out.println("Tên sản phẩm: " + productManager.getName() + " ---"
-                    + " Mã sản phẩm(ID): " + productManager.getId() + " ---"
-                    + " Giá sản phẩm: " + productManager.getPrice());
-
+        for (demoProduct demoProduct : listProducts) {
+            if (demoProduct instanceof HandedProduct) {
+                System.out.println("ID: " + demoProduct.getId() + " , " + "Name: " + demoProduct.getName() + " , " +
+                        "Manufacturer: " + demoProduct.getManufacturer()
+                        + " , " + "Price: " + demoProduct.getPrice() + " , "
+                        + "Warranty_period: " + demoProduct.getWarranty_period());
+            } else {
+                System.out.println("ID: " + demoProduct.getId() + " , " + "Name: " + demoProduct.getName() + " , " +
+                        "Manufacturer: " + demoProduct.getManufacturer()
+                        + " , " + "Price: " + demoProduct.getPrice() + " , " + "Nation: " + demoProduct.getNation()
+                        + " , " + "Status: " + demoProduct.getStatus());
+            }
         }
-
     }
+
 
     public void sortPrice() {
         listProducts.sort(new demoProduct.SortPrice());
@@ -123,26 +140,28 @@ public class ManagerProduct {
         writeFile();
     }
 
-    //    public void searchName() {
-//        System.out.println("------------------------------------------------------------");
-//        boolean check = false;
-//        System.out.println("Nhập tên sản phẩm cần tìm: ");
-//        String name = scanner.nextLine();
-//        for (ArrayListProduct listProduct : listProducts) {
-//            if (listProduct.getName().equals(name)) {
-//                check = true;
-//                System.out.println("\nThông tin sản phẩm cần tìm là: \n" + "Tên sản phẩm: " + listProduct.getName() + " ---"
-//                        + " Mã sản phẩm(ID): " + listProduct.getId() + " ---"
-//                        + " Giá sản phẩm: " + listProduct.getPrice());
-//                break;
-//            }
-//
-//        }
-//        if (!check) {
-//            System.out.println("\nKhông tìm thấy tên sản phẩm !!!");
-//        }
-//    }
-//
+    public void searchName() {
+        System.out.println("------------------------------------------------------------");
+        boolean check = false;
+        System.out.println("Input products to find: ");
+        String name = scanner.nextLine();
+        for (demoProduct demoProduct : listProducts) {
+            if (demoProduct.getName().equals(name)) {
+                check = true;
+                System.out.println("\nProduct information is: \n" + "Name: " + demoProduct.getName() + " ---"
+                        + " ID: " + demoProduct.getId() + " ---"
+                        + " Product price: " + demoProduct.getPrice());
+                writeFile();
+                break;
+            }
+
+        }
+        if (!check) {
+            System.out.println("\nNot found name !!!");
+        }
+
+    }
+
     private static final String PRODUCT_FILE = "src/demo/result";
     private static final List<String> products = new ArrayList<String>();
 
@@ -159,7 +178,7 @@ public class ManagerProduct {
             }
             bufferedReader.close();
         } catch (Exception e) {
-            System.err.println("File không tồn tại or nội dung có lỗi");
+            System.err.println("The file does not exist or the content has an error");
         }
     }
 

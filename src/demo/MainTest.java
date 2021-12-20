@@ -29,17 +29,17 @@ public class MainTest {
                     managerProduct.edit();
                     break;
 
-//                case 3:
-//                    productManager.delete();
-//                    break;
-//                case 4:
-//                    productManager.searchName();
-//                    break;
-//                case 5:
-//                    productManager.display();
-//                    break;
-//                case 6:
-//                    System.exit(6);
+                case 3:
+                    managerProduct.delete();
+                    break;
+                case 4:
+                    managerProduct.searchName();
+                    break;
+                case 5:
+                    managerProduct.display();
+                    break;
+                case 6:
+                    System.exit(6);
             }
 
         }

@@ -31,8 +31,6 @@ public class AuthenticProduct extends demoProduct {
 
     @Override
     public String toString() {
-        return super.toString() +
-                "," + nation +
-                "," + status;
+        return super.toString() + " , " +"Nation: " + nation + " , " +"Status: " +  status;
     }
 }

@@ -22,6 +22,6 @@ public class HandedProduct extends demoProduct {
     @Override
     public String toString() {
         return super.toString() +
-                "," + warranty_period;
+                " , " +"Warranty_period: " + warranty_period;
     }
 }

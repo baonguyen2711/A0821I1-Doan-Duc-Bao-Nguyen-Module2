@@ -1,2 +1,2 @@
-1,a,aaa,1,aaa
-2,b,bbbbb,2,bbb,bbbbbb
+ID: 1 , Name: a , Manufacturer: a , Price: 1 , Warranty_period: a
+ID: 2 , Name: b , Manufacturer: b , Price: 2 , Nation: b , Status: b

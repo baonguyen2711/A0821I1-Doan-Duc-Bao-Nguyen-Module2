@@ -56,10 +56,8 @@ public abstract class demoProduct {
 
     @Override
     public String toString() {
-        return id +
-                "," + name  +
-                "," + manufacturer +
-                "," + price;
+        return"ID: " + id + " , " +"Name: " + name  + " , " +
+                "Manufacturer: " + manufacturer + " , " + "Price: " + price;
     }
 
     public void setWarranty_period(String nextLine) {
@@ -69,6 +67,18 @@ public abstract class demoProduct {
     }
 
     public void setStatus(String nextLine) {
+    }
+
+    public String getWarranty_period() {
+        return warranty_period;
+    }
+
+    public String getNation() {
+        return nation;
+    }
+
+    public String getStatus() {
+        return status;
     }
 
     public static class SortPrice implements Comparator<demoProduct> {
